@@ -5,25 +5,41 @@
     xmlns:ios            = "clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea = "true"
     x:Class              = "Stocks.StockList">
-    <StackLayout
-        HorizontalOptions = "Center"
-        VerticalOptions   = "Center">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width = "*" />
+            <ColumnDefinition
+                Width = "Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height = "Auto" />
+            <RowDefinition
+                Height = "Auto" />
+        </Grid.RowDefinitions>
         <Entry
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="10,0,0,0"
             x:Name            = "StockSearch"
             Placeholder       = "Stock Symbol"
-            VerticalOptions   = "Center"
-            HorizontalOptions = "Center"
-            Completed="Handle_Completed"
-            
-        />
+            VerticalOptions   = "FillAndExpand"
+            HorizontalOptions = "FillAndExpand"
+            Completed         = "Handle_Completed" />
         <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,0,10,0"
             x:Name  = "SearchButton"
             Text    = "Get Stock"
             Clicked = "Handle_Clicked" />
         <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             x:Name        = "StocksListView"
-            Margin        = "0,5,0,0"
-            Grid.Row      = "1"
+            Margin        = "5"
             HasUnevenRows = "true">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -59,24 +75,32 @@
                                     FontAttributes = "Bold"
                                     Text           = "High" />
                                 <Label
-                                    Grid.Row       = "2"
-                                    Grid.Column    = "0"
-                                    Text           = "{Binding Value.The2High}" />
+                                    Grid.Row    = "2"
+                                    Grid.Column = "0"
+                                    Text        = "{Binding Value.The2High}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "1"
                                     FontAttributes = "Bold"
                                     Text           = "Low" />
                                 <Label
+                                    Grid.Row    = "2"
+                                    Grid.Column = "1"
+                                    Text        = "{Binding Value.The3Low}" />
+                                <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "2"
                                     FontAttributes = "Bold"
                                     Text           = "Close" />
+                                <Label
+                                    Grid.Row    = "2"
+                                    Grid.Column = "2"
+                                    Text        = "{Binding Value.The4Close}" />
                             </Grid>
                         </ViewCell.View>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
