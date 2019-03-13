@@ -52,12 +52,16 @@
                                     Grid.Column    = "0"
                                     TextColor      = "Navy"
                                     FontAttributes = "Bold"
-                                    Text           = "{Binding Date}" />
+                                    Text           = "{Binding Key}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
                                     FontAttributes = "Bold"
                                     Text           = "High" />
+                                <Label
+                                    Grid.Row       = "2"
+                                    Grid.Column    = "0"
+                                    Text           = "{Binding Value.The2High}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "1"
