@@ -41,20 +41,20 @@ namespace Stocks {
 
     public partial class TimeSeriesDaily {
         [JsonProperty("1. open")]
-        public string The1Open { get; set; }
+        public double The1Open { get; set; }
 
         [JsonProperty("2. high")]
-        public string The2High { get; set; }
+        public double The2High { get; set; }
 
         [JsonProperty("3. low")]
-        public string The3Low { get; set; }
+        public double The3Low { get; set; }
 
         [JsonProperty("4. close")]
-        public string The4Close { get; set; }
+        public double The4Close { get; set; }
 
         [JsonProperty("5. volume")]
         [JsonConverter(typeof(ParseStringConverter))]
-        public long The5Volume { get; set; }
+        public double The5Volume { get; set; }
     }
 
     public partial class StocksData {

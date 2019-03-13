@@ -17,7 +17,7 @@ namespace Stocks {
         }
 
         async void GetSymbolData() {
-            string symbol = StockSearch.Text;
+            string symbol = StockSearch.Text.ToUpper();
             Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
 
             HttpClient client = new HttpClient();
