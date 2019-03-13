@@ -19,6 +19,7 @@ namespace Stocks {
         }
 
         async void GetSymbolData() {
+            LoadingIcon.IsRunning = true;
             // PULL DATA
             string symbol = StockSearch.Text.ToUpper();
             Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
@@ -33,6 +34,7 @@ namespace Stocks {
                 dailyData = StocksData.FromJson(jsonContent).TimeSeriesDaily;
 
                 if (dailyData == null) {
+                    LoadingIcon.IsRunning = false;
                     await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
                     return;
                 }
@@ -41,8 +43,8 @@ namespace Stocks {
                 StocksListView.ItemsSource = dailyData;
                 HighestLabel.Text = "Highest: " + getHighest().ToString("c2");
                 LowestLabel.Text = "Lowest: " + getLowest().ToString("c2");
+                LoadingIcon.IsRunning = false;
             }
-
         }
 
         private double getHighest() {
