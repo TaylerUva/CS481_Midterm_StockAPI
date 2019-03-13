@@ -87,7 +87,7 @@
                                     Grid.Column    = "0"
                                     TextColor      = "Navy"
                                     FontAttributes = "Bold"
-                                    Text           = "{Binding Key, StringFormat='{0:D}'}" />
+                                    Text           = "{Binding Key}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
