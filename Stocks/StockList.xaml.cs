@@ -32,11 +32,17 @@ namespace Stocks {
                 string jsonContent = await response.Content.ReadAsStringAsync();
                 dailyData = StocksData.FromJson(jsonContent).TimeSeriesDaily;
 
+                if (dailyData == null) {
+                    await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
+                    return;
+                }
+
                 // USE DATA
                 StocksListView.ItemsSource = dailyData;
                 HighestLabel.Text = "Highest: " + getHighest().ToString("c2");
                 LowestLabel.Text = "Lowest: " + getLowest().ToString("c2");
             }
+
         }
 
         private double getHighest() {
