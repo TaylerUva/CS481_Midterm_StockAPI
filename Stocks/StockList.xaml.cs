@@ -19,9 +19,16 @@ namespace Stocks {
         }
 
         async void GetSymbolData() {
+            if (StockSearch.Text == null) {
+                await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
+                return;
+            }
+
             LoadingIcon.IsRunning = true;
             // PULL DATA
             string symbol = StockSearch.Text.ToUpper();
+
+
             Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
 
             HttpClient client = new HttpClient();
