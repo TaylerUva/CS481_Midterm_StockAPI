@@ -34,11 +34,9 @@ namespace Stocks {
 
                 // USE DATA
                 StocksListView.ItemsSource = dailyData;
-                getHighest();
-                getLowest();
+                HighestLabel.Text = "Highest: " + getHighest().ToString("c2");
+                LowestLabel.Text = "Lowest: " + getLowest().ToString("c2");
             }
-
-
         }
 
         private double getHighest() {

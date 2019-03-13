@@ -17,30 +17,46 @@
                 Height = "Auto" />
             <RowDefinition
                 Height = "Auto" />
+            <RowDefinition
+                Height = "Auto" />
         </Grid.RowDefinitions>
         <Entry
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="10,0,0,0"
+            Grid.Row          = "0"
+            Grid.Column       = "0"
+            Margin            = "20,0,10,0"
             x:Name            = "StockSearch"
             Placeholder       = "Stock Symbol"
             VerticalOptions   = "FillAndExpand"
             HorizontalOptions = "FillAndExpand"
             Completed         = "Handle_Completed" />
         <Button
-            Grid.Row="0"
-            Grid.Column="1"
-            Margin="0,0,10,0"
-            x:Name  = "SearchButton"
-            Text    = "Get Stock"
-            Clicked = "Handle_Clicked" />
+            Grid.Row    = "0"
+            Grid.Column = "1"
+            Margin      = "0,0,20,0"
+            x:Name      = "SearchButton"
+            Text        = "Get Stock"
+            Clicked     = "Handle_Clicked" />
+        <StackLayout
+            Grid.Row        = "1"
+            Grid.Column     = "0"
+            Grid.ColumnSpan = "2"
+            Orientation     = "Horizontal">
+            <Label
+                x:Name            = "HighestLabel"
+                HorizontalOptions = "CenterAndExpand"
+                TextColor         = "Green" />
+            <Label
+                x:Name            = "LowestLabel"
+                HorizontalOptions = "CenterAndExpand"
+                TextColor         = "Red" />
+        </StackLayout>
         <ListView
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            x:Name        = "StocksListView"
-            Margin        = "5"
-            HasUnevenRows = "true">
+            Grid.Row        = "2"
+            Grid.Column     = "0"
+            Grid.ColumnSpan = "2"
+            x:Name          = "StocksListView"
+            Margin          = "10,0,10,0"
+            HasUnevenRows   = "true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -73,28 +89,34 @@
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
                                     FontAttributes = "Bold"
+                                    TextColor      = "Green"
                                     Text           = "High" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "0"
+                                    TextColor   = "Green"
                                     Text        = "{Binding Value.The2High, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "1"
                                     FontAttributes = "Bold"
+                                    TextColor      = "Red"
                                     Text           = "Low" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "1"
+                                    TextColor   = "Red"
                                     Text        = "{Binding Value.The3Low, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "2"
                                     FontAttributes = "Bold"
+                                    TextColor      = "Purple"
                                     Text           = "Close" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "2"
+                                    TextColor   = "Purple"
                                     Text        = "{Binding Value.The4Close, StringFormat='{0:c2}'}" />
                             </Grid>
                         </ViewCell.View>
