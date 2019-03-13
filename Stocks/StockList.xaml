@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns               = "http://xamarin.com/schemas/2014/forms"
+    xmlns:x              = "http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios            = "clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea = "true"
+    x:Class              = "Stocks.StockList">
+    <StackLayout
+        HorizontalOptions = "Center"
+        VerticalOptions   = "Center">
+        <Entry
+            x:Name            = "StockSearch"
+            Placeholder       = "Stock Symbol"
+            VerticalOptions   = "Center"
+            HorizontalOptions = "Center"
+            Completed="Handle_Completed"
+            
+        />
+        <Button
+            x:Name  = "SearchButton"
+            Text    = "Get Stock"
+            Clicked = "Handle_Clicked" />
+        <ListView
+            x:Name        = "StocksListView"
+            Margin        = "0,5,0,0"
+            Grid.Row      = "1"
+            HasUnevenRows = "true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid
+                                x:Name = "ListViewGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width = "*" />
+                                    <ColumnDefinition
+                                        Width = "*" />
+                                    <ColumnDefinition
+                                        Width = "*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height = "*" />
+                                    <RowDefinition
+                                        Height = "*" />
+                                    <RowDefinition
+                                        Height = "*" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row       = "0"
+                                    Grid.Column    = "0"
+                                    TextColor      = "Navy"
+                                    FontAttributes = "Bold"
+                                    Text           = "{Binding Date}" />
+                                <Label
+                                    Grid.Row       = "1"
+                                    Grid.Column    = "0"
+                                    FontAttributes = "Bold"
+                                    Text           = "High" />
+                                <Label
+                                    Grid.Row       = "1"
+                                    Grid.Column    = "1"
+                                    FontAttributes = "Bold"
+                                    Text           = "Low" />
+                                <Label
+                                    Grid.Row       = "1"
+                                    Grid.Column    = "2"
+                                    FontAttributes = "Bold"
+                                    Text           = "Close" />
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
