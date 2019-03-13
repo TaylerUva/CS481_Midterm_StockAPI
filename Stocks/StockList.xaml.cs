@@ -11,12 +11,15 @@ namespace Stocks {
         const string API_KEY = "&apikey=7W0XKA610P4NM7MQ";
         const string END_POINT = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=";
 
+        Dictionary<string, TimeSeriesDaily> dailyData;
+
         public StockList() {
             InitializeComponent();
             StockSearch.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeCharacter);
         }
 
         async void GetSymbolData() {
+            // PULL DATA
             string symbol = StockSearch.Text.ToUpper();
             Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
 
@@ -25,10 +28,35 @@ namespace Stocks {
             HttpResponseMessage response = await client.GetAsync(stockApiUri);
 
             if (response.IsSuccessStatusCode) {
+                // PULL DATA
                 string jsonContent = await response.Content.ReadAsStringAsync();
-                var stocksData = StocksData.FromJson(jsonContent);
-                StocksListView.ItemsSource = stocksData.TimeSeriesDaily;
+                dailyData = StocksData.FromJson(jsonContent).TimeSeriesDaily;
+
+                // USE DATA
+                StocksListView.ItemsSource = dailyData;
+                getHighest();
+                getLowest();
             }
+
+
+        }
+
+        private double getHighest() {
+            double stockHigh = double.MinValue;
+            foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
+                double dailyHigh = item.Value.The2High;
+                if (dailyHigh > stockHigh) stockHigh = dailyHigh;
+            }
+            return stockHigh;
+        }
+
+        private double getLowest() {
+            double stockLow = double.MaxValue;
+            foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
+                double dailyLow = item.Value.The2High;
+                if (dailyLow < stockLow) stockLow = dailyLow;
+            }
+            return stockLow;
         }
 
         void Handle_Clicked(object sender, System.EventArgs e) {
