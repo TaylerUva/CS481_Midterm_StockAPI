@@ -4,7 +4,14 @@
     xmlns:x              = "http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios            = "clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea = "true"
+    xmlns:local          = "clr-namespace:Stocks"
     x:Class              = "Stocks.StockList">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateTimeConverter
+                x:Key = "stringToDate" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -46,8 +53,8 @@
                 HorizontalOptions = "CenterAndExpand"
                 TextColor         = "Green" />
             <ActivityIndicator
-                x:Name="LoadingIcon"
-                IsRunning                  = "false"/>
+                x:Name    = "LoadingIcon"
+                IsRunning = "false" />
             <Label
                 x:Name            = "LowestLabel"
                 HorizontalOptions = "CenterAndExpand"
@@ -83,11 +90,12 @@
                                         Height = "*" />
                                 </Grid.RowDefinitions>
                                 <Label
-                                    Grid.Row       = "0"
-                                    Grid.Column    = "0"
-                                    TextColor      = "Navy"
-                                    FontAttributes = "Bold"
-                                    Text           = "{Binding Key}" />
+                                    Grid.Row        = "0"
+                                    Grid.Column     = "0"
+                                    Grid.ColumnSpan = "3"
+                                    TextColor       = "Navy"
+                                    FontAttributes  = "Bold"
+                                    Text            = "{Binding Key, Converter={StaticResource stringToDate}, StringFormat='{0:D}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
