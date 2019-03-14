@@ -25,16 +25,16 @@ namespace Stocks {
 
             string symbol = StockSearch.Text;
             var symbolData = await StockDataModel.GetSymbolData(symbol);
-            if (symbolData != null) {
-                StocksListView.ItemsSource = symbolData;
-                HighestLabel.Text = StockDataModel.getHighest();
-                LowestLabel.Text = StockDataModel.getLowest();
-            } else {
+            StocksListView.ItemsSource = symbolData;
+            HighestLabel.Text = StockDataModel.getHighest();
+            LowestLabel.Text = StockDataModel.getLowest();
+            StocksListView.IsRefreshing = false;
+
+            if (symbolData == null) {
                 if (string.IsNullOrEmpty(symbol)) {
                     await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
                 } else await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
             }
-            StocksListView.IsRefreshing = false;
         }
     }
 }

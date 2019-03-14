@@ -45,7 +45,7 @@ namespace Stocks.Models {
                 }
                 return "Highest: " + stockHigh.ToString("c2");
             }
-            return "COULD NOT GET SYMBOL";
+            return null;
         }
 
         public static string getLowest() {
@@ -57,7 +57,7 @@ namespace Stocks.Models {
                 }
                 return "Lowest: " + stockLow.ToString("c2");
             }
-            return "COULD NOT GET SYMBOL";
+            return null;
         }
 
         private static List<Entry> GetAsEntries() {
