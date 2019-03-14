@@ -14,7 +14,7 @@ namespace Stocks {
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class StocksData {
+    public partial class StocksJson {
         [JsonProperty("Meta Data")]
         public MetaData MetaData { get; set; }
 
@@ -57,12 +57,12 @@ namespace Stocks {
         public double The5Volume { get; set; }
     }
 
-    public partial class StocksData {
-        public static StocksData FromJson(string json) => JsonConvert.DeserializeObject<StocksData>(json, Stocks.Converter.Settings);
+    public partial class StocksJson {
+        public static StocksJson FromJson(string json) => JsonConvert.DeserializeObject<StocksJson>(json, Stocks.Converter.Settings);
     }
 
     public static class Serialize {
-        public static string ToJson(this StocksData self) => JsonConvert.SerializeObject(self, Stocks.Converter.Settings);
+        public static string ToJson(this StocksJson self) => JsonConvert.SerializeObject(self, Stocks.Converter.Settings);
     }
 
     internal static class Converter {

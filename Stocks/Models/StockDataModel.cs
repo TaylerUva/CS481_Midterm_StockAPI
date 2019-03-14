@@ -27,7 +27,7 @@ namespace Stocks.Models {
             if (response.IsSuccessStatusCode) {
                 // PULL DATA
                 string jsonContent = await response.Content.ReadAsStringAsync();
-                dailyData = StocksData.FromJson(jsonContent).TimeSeriesDaily;
+                dailyData = StocksJson.FromJson(jsonContent).TimeSeriesDaily;
 
                 if (dailyData == null) {
                     return null;
