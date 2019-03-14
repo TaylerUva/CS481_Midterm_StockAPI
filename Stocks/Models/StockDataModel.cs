@@ -10,19 +10,15 @@ namespace Stocks.Models {
         const string API_KEY = "&apikey=7W0XKA610P4NM7MQ";
         const string END_POINT = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=";
 
-        static string symbol;
+        static string m_symbol;
 
-        static private Dictionary<string, TimeSeriesDaily> dailyData;
+        static Dictionary<string, TimeSeriesDaily> dailyData;
 
-        public static async Task<int> GetSymbolData(Entry StockSearch) {
-            if (StockSearch.Text == null) {
-                return 1;
-            }
-
+        public static async Task<Dictionary<string, TimeSeriesDaily>> GetSymbolData(string symbol) {
             // PULL DATA
-            symbol = StockSearch.Text.ToUpper();
+            m_symbol = symbol;
 
-            Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
+            Uri stockApiUri = new Uri(END_POINT + m_symbol + API_KEY);
 
             HttpClient client = new HttpClient();
 
@@ -34,14 +30,9 @@ namespace Stocks.Models {
                 dailyData = StocksData.FromJson(jsonContent).TimeSeriesDaily;
 
                 if (dailyData == null) {
-                    return 2;
+                    return null;
                 }
-
             }
-            return 0;
-        }
-
-        public static Dictionary<string, TimeSeriesDaily> GetDailyDataList() {
             return dailyData;
         }
 
@@ -52,8 +43,9 @@ namespace Stocks.Models {
                     double dailyHigh = item.Value.The2High;
                     if (dailyHigh > stockHigh) stockHigh = dailyHigh;
                 }
+                return "Highest: " + stockHigh.ToString("c2");
             }
-            return "Highest: " + stockHigh.ToString("c2");
+            return "COULD NOT GET SYMBOL";
         }
 
         public static string getLowest() {
@@ -63,8 +55,9 @@ namespace Stocks.Models {
                     double dailyLow = item.Value.The2High;
                     if (dailyLow < stockLow) stockLow = dailyLow;
                 }
+                return "Lowest: " + stockLow.ToString("c2");
             }
-            return "Lowest: " + stockLow.ToString("c2");
+            return "COULD NOT GET SYMBOL";
         }
     }
 }

@@ -22,15 +22,18 @@ namespace Stocks {
 
         async void PullData() {
             StocksListView.IsRefreshing = true;
-            int exitCode = await StockDataModel.GetSymbolData(StockSearch);
 
-            switch (exitCode) {
-            case 1: await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close"); break;
-            case 2: await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + StockSearch.Text.ToUpper() + "\"", "Close"); break;
+            string symbol = StockSearch.Text;
+            var symbolData = await StockDataModel.GetSymbolData(symbol);
+            if (symbolData != null) {
+                StocksListView.ItemsSource = symbolData;
+                HighestLabel.Text = StockDataModel.getHighest();
+                LowestLabel.Text = StockDataModel.getLowest();
+            } else {
+                if (string.IsNullOrEmpty(symbol)) {
+                    await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
+                } else await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
             }
-            StocksListView.ItemsSource = StockDataModel.GetDailyDataList();
-            HighestLabel.Text = StockDataModel.getHighest();
-            LowestLabel.Text = StockDataModel.getLowest();
             StocksListView.IsRefreshing = false;
         }
     }
