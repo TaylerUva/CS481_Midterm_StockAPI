@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using Microcharts;
 
 namespace Stocks.Models {
     public static class StockDataModel {
@@ -58,6 +58,16 @@ namespace Stocks.Models {
                 return "Lowest: " + stockLow.ToString("c2");
             }
             return "COULD NOT GET SYMBOL";
+        }
+
+        public static List<Entry> GetAsEntries() {
+            var entryList = new List<Entry>();
+            if (dailyData != null) {
+                foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
+                    entryList.Add(new Entry((float)item.Value.The2High));
+                }
+            }
+            return entryList;
         }
     }
 }
