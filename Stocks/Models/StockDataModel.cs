@@ -60,14 +60,23 @@ namespace Stocks.Models {
             return "COULD NOT GET SYMBOL";
         }
 
-        public static List<Entry> GetAsEntries() {
+        private static List<Entry> GetAsEntries() {
             var entryList = new List<Entry>();
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
-                    entryList.Add(new Entry((float)item.Value.The2High));
+                    var newEntry = new Entry((float)item.Value.The2High) {
+                        ValueLabel = item.Value.The2High.ToString()
+                    };
+                    entryList.Add(newEntry);
                 }
             }
             return entryList;
+        }
+
+        public static List<Entry> GetPastDayRange(int range) {
+            var subList = GetAsEntries();
+            if (subList.Count > range) return subList.GetRange(0, range);
+            return subList;
         }
     }
 }

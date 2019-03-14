@@ -18,11 +18,11 @@ namespace Stocks {
         }
 
         private void CreateCharts() {
-            var past30Days = new LineChart() { Entries = StockDataModel.GetAsEntries() };
-            //var past100Days = new LineChart() { Entries = entryList };
+            var past30Days = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
+            var past100Days = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
 
             Chart1.Chart = past30Days;
-            //Chart2.Chart = past100Days;
+            Chart2.Chart = past100Days;
         }
     }
 }
