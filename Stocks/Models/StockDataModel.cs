@@ -48,7 +48,6 @@ namespace Stocks.Models {
         /// <returns>The symbol.</returns>
         public static string GetSymbol() { return m_symbol; }
 
-
         /// <summary>
         /// Gets the highest stock prices.
         /// </summary>

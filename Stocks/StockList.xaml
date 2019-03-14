@@ -5,6 +5,7 @@
     xmlns:ios            = "clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea = "true"
     xmlns:local          = "clr-namespace:Stocks"
+    Appearing            = "Handle_Appearing"
     x:Class              = "Stocks.StockList">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -35,14 +36,14 @@
             Placeholder       = "Stock Symbol"
             VerticalOptions   = "FillAndExpand"
             HorizontalOptions = "FillAndExpand"
-            Completed         = "Handle_Completed" />
+            Completed         = "RequestStockData" />
         <Button
             Grid.Row    = "0"
             Grid.Column = "1"
             Margin      = "0,0,20,0"
             x:Name      = "SearchButton"
             Text        = "Get Stock"
-            Clicked     = "Handle_Clicked" />
+            Clicked     = "RequestStockData" />
         <StackLayout
             Grid.Row        = "1"
             Grid.Column     = "0"
