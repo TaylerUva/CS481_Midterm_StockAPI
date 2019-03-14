@@ -21,15 +21,20 @@ namespace Stocks {
         }
 
         async void PullData() {
+            // Set refreshing true
             StocksListView.IsRefreshing = true;
 
-            string symbol = StockSearch.Text;
-            var symbolData = await StockDataModel.GetSymbolData(symbol);
+            var symbolData = await StockDataModel.GetSymbolData(StockSearch.Text);
+            string symbol = StockDataModel.GetSymbol();
+
             StocksListView.ItemsSource = symbolData;
-            HighestLabel.Text = StockDataModel.getHighest();
-            LowestLabel.Text = StockDataModel.getLowest();
+            HighestLabel.Text = StockDataModel.GetHighest();
+            LowestLabel.Text = StockDataModel.GetLowest();
+
+            // Set refreshing false
             StocksListView.IsRefreshing = false;
 
+            // Error handeling
             if (symbolData == null) {
                 if (string.IsNullOrEmpty(symbol)) {
                     await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");

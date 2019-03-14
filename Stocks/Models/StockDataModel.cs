@@ -14,6 +14,12 @@ namespace Stocks.Models {
 
         static Dictionary<string, TimeSeriesDaily> dailyData;
 
+
+        /// <summary>
+        /// Gets the symbol data.
+        /// </summary>
+        /// <returns>The symbol data.</returns>
+        /// <param name="symbol">Symbol.</param>
         public static async Task<Dictionary<string, TimeSeriesDaily>> GetSymbolData(string symbol) {
             // PULL DATA
             m_symbol = symbol;
@@ -36,7 +42,18 @@ namespace Stocks.Models {
             return dailyData;
         }
 
-        public static string getHighest() {
+        /// <summary>
+        /// Gets the symbol.
+        /// </summary>
+        /// <returns>The symbol.</returns>
+        public static string GetSymbol() { return m_symbol; }
+
+
+        /// <summary>
+        /// Gets the highest stock prices.
+        /// </summary>
+        /// <returns>String</returns>
+        public static string GetHighest() {
             double stockHigh = double.MinValue;
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
@@ -45,10 +62,14 @@ namespace Stocks.Models {
                 }
                 return "Highest: " + stockHigh.ToString("c2");
             }
-            return null;
+            return "";
         }
 
-        public static string getLowest() {
+        /// <summary>
+        /// Gets the lowest stock prices.
+        /// </summary>
+        /// <returns>String</returns>
+        public static string GetLowest() {
             double stockLow = double.MaxValue;
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
@@ -57,7 +78,18 @@ namespace Stocks.Models {
                 }
                 return "Lowest: " + stockLow.ToString("c2");
             }
-            return null;
+            return "";
+        }
+
+        /// <summary>
+        /// Gets the past days as far back as range.
+        /// </summary>
+        /// <returns>The past day range.</returns>
+        /// <param name="range">Range.</param>
+        public static List<Entry> GetPastDayRange(int range) {
+            var subList = GetAsEntries();
+            if (subList.Count > range) return subList.GetRange(0, range);
+            return subList;
         }
 
         private static List<Entry> GetAsEntries() {
@@ -71,12 +103,6 @@ namespace Stocks.Models {
                 }
             }
             return entryList;
-        }
-
-        public static List<Entry> GetPastDayRange(int range) {
-            var subList = GetAsEntries();
-            if (subList.Count > range) return subList.GetRange(0, range);
-            return subList;
         }
     }
 }
