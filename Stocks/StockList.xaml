@@ -6,6 +6,7 @@
     ios:Page.UseSafeArea = "true"
     xmlns:local          = "clr-namespace:Stocks"
     Appearing            = "Handle_Appearing"
+    BackgroundColor      = "Black"
     x:Class              = "Stocks.StockList">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -36,14 +37,19 @@
             Placeholder       = "Stock Symbol"
             VerticalOptions   = "FillAndExpand"
             HorizontalOptions = "FillAndExpand"
+            BackgroundColor   = "Gray"
+            TextColor         = "White"
             Completed         = "RequestStockData" />
         <Button
-            Grid.Row    = "0"
-            Grid.Column = "1"
-            Margin      = "0,0,20,0"
-            x:Name      = "SearchButton"
-            Text        = "Get Stock"
-            Clicked     = "RequestStockData" />
+            Grid.Row        = "0"
+            Grid.Column     = "1"
+            Margin          = "0,0,20,0"
+            x:Name          = "SearchButton"
+            Text            = "Get Stock"
+            BackgroundColor = "Teal"
+            TextColor       = "White"
+            Padding         = "5"
+            Clicked         = "RequestStockData" />
         <StackLayout
             Grid.Row        = "1"
             Grid.Column     = "0"
@@ -52,10 +58,12 @@
             <Label
                 x:Name            = "HighestLabel"
                 HorizontalOptions = "CenterAndExpand"
-                TextColor         = "Green" />
+                TextColor         = "Lime" />
             <ActivityIndicator
-                    x:Name    = "LoadingIcon"
-                    IsRunning = "false" />
+                x:Name    = "LoadingIcon"
+                Color     = "White"
+                Scale     = "1.5"
+                IsRunning = "false" />
             <Label
                 x:Name            = "LowestLabel"
                 HorizontalOptions = "CenterAndExpand"
@@ -66,11 +74,14 @@
             Grid.Column     = "0"
             Grid.ColumnSpan = "2"
             x:Name          = "StocksListView"
+            BackgroundColor = "Transparent"
+            SeparatorColor  = "White"
             Margin          = "10,0,10,0"
             HasUnevenRows   = "true">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <ViewCell
+                        IsEnabled = "false">
                         <ViewCell.View>
                             <Grid
                                 x:Name = "ListViewGrid">
@@ -94,41 +105,41 @@
                                     Grid.Row        = "0"
                                     Grid.Column     = "0"
                                     Grid.ColumnSpan = "3"
-                                    TextColor       = "Navy"
+                                    TextColor       = "White"
                                     FontAttributes  = "Bold"
                                     Text            = "{Binding Key, Converter={StaticResource stringToDate}, StringFormat='{0:D}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
                                     FontAttributes = "Bold"
-                                    TextColor      = "Green"
+                                    TextColor      = "Red"
                                     Text           = "High" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "0"
-                                    TextColor   = "Green"
+                                    TextColor   = "Red"
                                     Text        = "{Binding Value.The2High, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "1"
                                     FontAttributes = "Bold"
-                                    TextColor      = "Red"
+                                    TextColor      = "Lime"
                                     Text           = "Low" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "1"
-                                    TextColor   = "Red"
+                                    TextColor   = "Lime"
                                     Text        = "{Binding Value.The3Low, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "2"
                                     FontAttributes = "Bold"
-                                    TextColor      = "Purple"
+                                    TextColor      = "Aqua"
                                     Text           = "Close" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "2"
-                                    TextColor   = "Purple"
+                                    TextColor   = "Aqua"
                                     Text        = "{Binding Value.The4Close, StringFormat='{0:c2}'}" />
                             </Grid>
                         </ViewCell.View>
