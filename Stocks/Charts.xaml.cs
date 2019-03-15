@@ -39,19 +39,21 @@ namespace Stocks {
         async Task PullData() {
             LoadingIcon.IsRunning = true;
 
-
             string newSymbol = StockSearch.Text;
 
             stockData = await StockDataModel.GetSymbolData(newSymbol);
 
-            Chart1.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
-            Chart2.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
-
-            oldSymbol = newSymbol;
+            if (stockData == null) {
+                StockSearch.Text = oldSymbol;
+                await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
+            } else {
+                Chart1.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
+                Chart2.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
+                oldSymbol = newSymbol;
+            }
 
             LoadingIcon.IsRunning = false;
 
-            if (stockData == null) await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
         }
     }
 }

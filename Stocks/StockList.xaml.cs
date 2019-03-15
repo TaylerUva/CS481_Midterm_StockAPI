@@ -41,15 +41,18 @@ namespace Stocks {
 
             stockData = await StockDataModel.GetSymbolData(newSymbol);
 
-            StocksListView.ItemsSource = stockData;
-            HighestLabel.Text = StockDataModel.GetHighest();
-            LowestLabel.Text = StockDataModel.GetLowest();
-
-            oldSymbol = newSymbol;
+            if (stockData == null) {
+                StockSearch.Text = oldSymbol;
+                await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
+            } else {
+                StocksListView.ItemsSource = stockData;
+                HighestLabel.Text = StockDataModel.GetHighest();
+                LowestLabel.Text = StockDataModel.GetLowest();
+                oldSymbol = newSymbol;
+            }
 
             StocksListView.IsRefreshing = false;
 
-            if (stockData == null) await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
         }
     }
 }
