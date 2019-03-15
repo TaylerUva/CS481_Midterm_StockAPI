@@ -20,7 +20,6 @@ namespace Stocks {
         async void Handle_Appearing(object sender, System.EventArgs e) {
             StockSearch.Text = StockDataModel.lastSymbol;
             if (StockSearch.Text != oldSymbol) {
-                System.Diagnostics.Debug.WriteLine("CHANGED!"); //*************
                 await PullData();
             }
         }
