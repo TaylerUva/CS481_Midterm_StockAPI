@@ -47,18 +47,24 @@ namespace Stocks {
                 StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
             } else {
-                Label30Days.IsVisible = true;
-                Label100Days.IsVisible = true;
 
 
                 Chart30Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
                 Chart100Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
 
+                Chart30Days.Chart.LabelTextSize = 30;
+                Chart100Days.Chart.LabelTextSize = 30;
                 Chart30Days.Chart.BackgroundColor = SKColors.Transparent;
                 Chart100Days.Chart.BackgroundColor = SKColors.Transparent;
 
                 HighestLabel.Text = StockDataModel.GetHighest();
                 LowestLabel.Text = StockDataModel.GetLowest();
+
+                Label30Days.IsVisible = true;
+                Label100Days.IsVisible = true;
+                Chart30Days.IsVisible = true;
+                Chart100Days.IsVisible = true;
+
                 oldSymbol = newSymbol;
             }
 

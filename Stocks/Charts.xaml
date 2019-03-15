@@ -46,24 +46,24 @@
                 Padding         = "5"
                 Clicked         = "RequestStockData" />
             <StackLayout
-            Grid.Row        = "1"
-            Grid.Column     = "0"
-            Grid.ColumnSpan = "2"
-            Orientation     = "Horizontal">
-            <Label
-                x:Name            = "HighestLabel"
-                HorizontalOptions = "CenterAndExpand"
-                TextColor         = "Lime" />
-            <ActivityIndicator
-                x:Name    = "LoadingIcon"
-                Color     = "White"
-                Scale     = "1.5"
-                IsRunning = "false" />
-            <Label
-                x:Name            = "LowestLabel"
-                HorizontalOptions = "CenterAndExpand"
-                TextColor         = "Red" />
-        </StackLayout>
+                Grid.Row        = "1"
+                Grid.Column     = "0"
+                Grid.ColumnSpan = "2"
+                Orientation     = "Horizontal">
+                <Label
+                    x:Name            = "HighestLabel"
+                    HorizontalOptions = "CenterAndExpand"
+                    TextColor         = "Lime" />
+                <ActivityIndicator
+                    x:Name    = "LoadingIcon"
+                    Color     = "White"
+                    Scale     = "1.5"
+                    IsRunning = "false" />
+                <Label
+                    x:Name            = "LowestLabel"
+                    HorizontalOptions = "CenterAndExpand"
+                    TextColor         = "Red" />
+            </StackLayout>
             <StackLayout
                 Grid.Row        = "2"
                 Grid.Column     = "0"
@@ -78,6 +78,7 @@
                     FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart30Days"
+                    IsVisible     = "false"
                     HeightRequest = "300" />
                 <Label
                     x:Name                  = "Label100Days"
@@ -89,6 +90,7 @@
                     FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart100Days"
+                    IsVisible     = "false"
                     HeightRequest = "300" />
             </StackLayout>
         </Grid>

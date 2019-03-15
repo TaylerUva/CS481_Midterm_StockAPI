@@ -89,14 +89,17 @@ namespace Stocks.Models {
         private static List<Entry> GetAsEntries() {
             var entryList = new List<Entry>();
             if (dailyData != null) {
+                int i = 0;
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
                     var newEntry = new Entry((float)item.Value.The2High) {
-                        //Label = item.Key,
                         TextColor = SKColors.White,
-                        Color = SKColors.White,
-                        //ValueLabel = item.Value.The2High.ToString()
+                        Color = SKColors.White
                     };
+                    if (i % 5 == 0) {
+                        newEntry.ValueLabel = item.Value.The2High.ToString();
+                    }
                     entryList.Add(newEntry);
+                    i++;
                 }
             }
             return entryList;
