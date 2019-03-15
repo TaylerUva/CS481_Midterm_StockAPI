@@ -20,7 +20,7 @@ namespace Stocks {
         }
 
         async void Handle_Appearing(object sender, System.EventArgs e) {
-            StockSearch.Text = StockDataModel.m_symbol;
+            StockSearch.Text = StockDataModel.lastSymbol;
             if (StockSearch.Text != oldSymbol) {
                 System.Diagnostics.Debug.WriteLine("CHANGED!"); //*************
                 await PullData();
@@ -45,7 +45,7 @@ namespace Stocks {
 
             if (stockData == null) {
                 StockSearch.Text = oldSymbol;
-                StockDataModel.m_symbol = oldSymbol;
+                StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
             } else {
                 Chart1.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };

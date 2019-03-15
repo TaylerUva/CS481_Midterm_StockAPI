@@ -10,7 +10,7 @@ namespace Stocks.Models {
         const string API_KEY = "&apikey=7W0XKA610P4NM7MQ";
         const string END_POINT = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=";
 
-        public static string m_symbol;
+        static public string lastSymbol;
 
         static Dictionary<string, TimeSeriesDaily> dailyData;
 
@@ -20,23 +20,24 @@ namespace Stocks.Models {
         /// <returns>The symbol data.</returns>
         /// <param name="symbol">Symbol.</param>
         public static async Task<Dictionary<string, TimeSeriesDaily>> GetSymbolData(string symbol) {
-            // PULL DATA
-            m_symbol = symbol;
-
-            Uri stockApiUri = new Uri(END_POINT + m_symbol + API_KEY);
-
-            HttpClient client = new HttpClient();
-
-            HttpResponseMessage response = await client.GetAsync(stockApiUri);
-
-            if (response.IsSuccessStatusCode) {
+            if (symbol != lastSymbol) {
                 // PULL DATA
-                string jsonContent = await response.Content.ReadAsStringAsync();
-                dailyData = StocksJson.FromJson(jsonContent).TimeSeriesDaily;
+                Uri stockApiUri = new Uri(END_POINT + symbol + API_KEY);
 
-                if (dailyData == null) {
-                    return null;
+                HttpClient client = new HttpClient();
+
+                HttpResponseMessage response = await client.GetAsync(stockApiUri);
+
+                if (response.IsSuccessStatusCode) {
+                    // PULL DATA
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    dailyData = StocksJson.FromJson(jsonContent).TimeSeriesDaily;
+
+                    if (dailyData == null) {
+                        return null;
+                    }
                 }
+                lastSymbol = symbol;
             }
             return dailyData;
         }
