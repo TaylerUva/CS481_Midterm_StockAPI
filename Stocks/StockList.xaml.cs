@@ -20,29 +20,32 @@ namespace Stocks {
         async void Handle_Appearing(object sender, System.EventArgs e) {
             StockSearch.Text = StockDataModel.GetSymbol();
             if (StockSearch.Text != oldSymbol) {
-                System.Diagnostics.Debug.WriteLine("CHANGED!");
-                await PullData(StockSearch.Text);
-                oldSymbol = StockSearch.Text;
+                System.Diagnostics.Debug.WriteLine("CHANGED!"); //*************
+                await PullData();
             }
         }
 
         async void RequestStockData(object sender, System.EventArgs e) {
-            StocksListView.IsRefreshing = true;
-            await PullData(StockSearch.Text);
+            await PullData();
             await ErrorMessages();
-            StocksListView.IsRefreshing = false;
         }
 
-        async Task PullData(string symbol) {
-            stockData = await StockDataModel.GetSymbolData(symbol);
+        async Task PullData() {
+            StocksListView.IsRefreshing = true;
+
+            stockData = await StockDataModel.GetSymbolData(StockSearch.Text);
 
             StocksListView.ItemsSource = stockData;
             HighestLabel.Text = StockDataModel.GetHighest();
             LowestLabel.Text = StockDataModel.GetLowest();
+
+            oldSymbol = StockSearch.Text;
+
+            StocksListView.IsRefreshing = false;
         }
 
         async Task ErrorMessages() {
-            string symbol = StockDataModel.GetSymbol();
+            string symbol = StockSearch.Text;
             if (stockData == null) {
                 if (string.IsNullOrEmpty(symbol)) {
                     await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
