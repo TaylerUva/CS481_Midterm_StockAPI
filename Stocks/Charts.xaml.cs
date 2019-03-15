@@ -27,6 +27,7 @@ namespace Stocks {
         async void RequestStockData(object sender, System.EventArgs e) {
             if (string.IsNullOrEmpty(StockSearch.Text)) {
                 StockSearch.Text = oldSymbol;
+                StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
                 return;
             }
@@ -49,6 +50,8 @@ namespace Stocks {
                 Label100Days.IsVisible = true;
                 Chart30Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
                 Chart100Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
+                HighestLabel.Text = StockDataModel.GetHighest();
+                LowestLabel.Text = StockDataModel.GetLowest();
                 oldSymbol = newSymbol;
             }
 

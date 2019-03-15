@@ -27,6 +27,7 @@ namespace Stocks {
         async void RequestStockData(object sender, System.EventArgs e) {
             if (string.IsNullOrEmpty(StockSearch.Text)) {
                 StockSearch.Text = oldSymbol;
+                StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
                 return;
             }
