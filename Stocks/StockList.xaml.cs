@@ -26,31 +26,31 @@ namespace Stocks {
         }
 
         async void RequestStockData(object sender, System.EventArgs e) {
+            if (string.IsNullOrEmpty(StockSearch.Text)) {
+                StockSearch.Text = oldSymbol;
+                await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
+                return;
+            }
             await PullData();
-            await ErrorMessages();
         }
 
         async Task PullData() {
             StocksListView.IsRefreshing = true;
 
-            stockData = await StockDataModel.GetSymbolData(StockSearch.Text);
+            string newSymbol = StockSearch.Text;
+
+            stockData = await StockDataModel.GetSymbolData(newSymbol);
 
             StocksListView.ItemsSource = stockData;
             HighestLabel.Text = StockDataModel.GetHighest();
             LowestLabel.Text = StockDataModel.GetLowest();
 
-            oldSymbol = StockSearch.Text;
+            oldSymbol = newSymbol;
 
             StocksListView.IsRefreshing = false;
-        }
 
-        async Task ErrorMessages() {
-            string symbol = StockSearch.Text;
-            if (stockData == null) {
-                if (string.IsNullOrEmpty(symbol)) {
-                    await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
-                } else await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
-            }
+            if (stockData == null) await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
         }
     }
 }
+

@@ -28,30 +28,30 @@ namespace Stocks {
         }
 
         async void RequestStockData(object sender, System.EventArgs e) {
+            if (string.IsNullOrEmpty(StockSearch.Text)) {
+                StockSearch.Text = oldSymbol;
+                await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
+                return;
+            }
             await PullData();
-            await ErrorMessages();
         }
 
         async Task PullData() {
             LoadingIcon.IsRunning = true;
 
-            stockData = await StockDataModel.GetSymbolData(StockSearch.Text);
+
+            string newSymbol = StockSearch.Text;
+
+            stockData = await StockDataModel.GetSymbolData(newSymbol);
 
             Chart1.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
             Chart2.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
 
-            oldSymbol = StockSearch.Text;
+            oldSymbol = newSymbol;
 
             LoadingIcon.IsRunning = false;
-        }
 
-        async Task ErrorMessages() {
-            string symbol = StockSearch.Text;
-            if (stockData == null) {
-                if (string.IsNullOrEmpty(symbol)) {
-                    await DisplayAlert("Empty Search", "Cannot leave stock search empty!", "Close");
-                } else await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + symbol + "\"", "Close");
-            }
+            if (stockData == null) await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
         }
     }
 }
