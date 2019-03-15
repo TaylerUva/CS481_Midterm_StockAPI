@@ -45,8 +45,8 @@ namespace Stocks {
                 StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
             } else {
-                Chart1.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
-                Chart2.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
+                Chart30Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
+                Chart100Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
                 oldSymbol = newSymbol;
             }
 

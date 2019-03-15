@@ -46,12 +46,14 @@
                 <ActivityIndicator
                     x:Name    = "LoadingIcon"
                     IsRunning = "false" />
+                <Label Text="Last 30 Days"/>
                 <microcharts:ChartView
-                    x:Name        = "Chart1"
-                    HeightRequest = "200" />
+                    x:Name        = "Chart30Days"
+                    HeightRequest = "300" />
+                <Label Text="Last 100 Days"/>
                 <microcharts:ChartView
-                    x:Name        = "Chart2"
-                    HeightRequest = "200" />
+                    x:Name        = "Chart100Days"
+                    HeightRequest = "300" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
