@@ -48,8 +48,8 @@ namespace Stocks {
             } else {
                 StocksListView.IsVisible = true;
                 StocksListView.ItemsSource = stockData;
-                HighestLabel.Text = StockDataModel.GetHighest();
-                LowestLabel.Text = StockDataModel.GetLowest();
+                HighestLabel.Text = StockDataModel.GetHighestString();
+                LowestLabel.Text = StockDataModel.GetLowestString();
                 oldSymbol = newSymbol;
             }
 

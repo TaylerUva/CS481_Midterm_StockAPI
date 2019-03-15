@@ -79,6 +79,7 @@
                 <microcharts:ChartView
                     x:Name        = "Chart30Days"
                     IsVisible     = "false"
+                    Margin        = "10"
                     HeightRequest = "300" />
                 <Label
                     x:Name                  = "Label100Days"
@@ -90,6 +91,7 @@
                     FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart100Days"
+                    Margin        = "10,0"
                     IsVisible     = "false"
                     HeightRequest = "300" />
             </StackLayout>

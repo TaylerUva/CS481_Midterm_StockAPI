@@ -113,23 +113,23 @@
                                     Grid.Row       = "1"
                                     Grid.Column    = "0"
                                     FontAttributes = "Bold"
-                                    TextColor      = "Red"
+                                    TextColor      = "Lime"
                                     Text           = "High" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "0"
-                                    TextColor   = "Red"
+                                    TextColor   = "Lime"
                                     Text        = "{Binding Value.The2High, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"
                                     Grid.Column    = "1"
                                     FontAttributes = "Bold"
-                                    TextColor      = "Lime"
+                                    TextColor      = "Red"
                                     Text           = "Low" />
                                 <Label
                                     Grid.Row    = "2"
                                     Grid.Column = "1"
-                                    TextColor   = "Lime"
+                                    TextColor   = "Red"
                                     Text        = "{Binding Value.The3Low, StringFormat='{0:c2}'}" />
                                 <Label
                                     Grid.Row       = "1"

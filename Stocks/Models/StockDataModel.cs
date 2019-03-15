@@ -47,32 +47,52 @@ namespace Stocks.Models {
         /// Gets the highest stock prices.
         /// </summary>
         /// <returns>String</returns>
-        public static string GetHighest() {
+        public static string GetHighestString() {
+            if (dailyData != null) {
+                return "Highest: " + GetHighestNum().ToString("c2");
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Gets the highest stock prices.
+        /// </summary>
+        /// <returns>String</returns>
+        public static double GetHighestNum() {
             double stockHigh = double.MinValue;
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
                     double dailyHigh = item.Value.The2High;
                     if (dailyHigh > stockHigh) stockHigh = dailyHigh;
                 }
-                return "Highest: " + stockHigh.ToString("c2");
+            }
+            return stockHigh;
+        }
+
+        /// <summary>
+        /// Gets the highest stock prices.
+        /// </summary>
+        /// <returns>String</returns>
+        public static string GetLowestString() {
+            if (dailyData != null) {
+                return "Lowest: " + GetLowestNum().ToString("c2");
             }
             return "";
         }
 
         /// <summary>
-        /// Gets the lowest stock prices.
+        /// Gets the highest stock prices.
         /// </summary>
         /// <returns>String</returns>
-        public static string GetLowest() {
+        public static double GetLowestNum() {
             double stockLow = double.MaxValue;
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
-                    double dailyLow = item.Value.The2High;
+                    double dailyLow = item.Value.The3Low;
                     if (dailyLow < stockLow) stockLow = dailyLow;
                 }
-                return "Lowest: " + stockLow.ToString("c2");
             }
-            return "";
+            return stockLow;
         }
 
         /// <summary>
@@ -95,11 +115,13 @@ namespace Stocks.Models {
                         TextColor = SKColors.White,
                         Color = SKColors.White
                     };
-                    if (i % 5 == 0) {
-                        newEntry.ValueLabel = item.Value.The2High.ToString();
+
+                    // Adds label to every 5th item
+                    if (i++ % 5 == 0) {
+                        newEntry.ValueLabel = "$" + item.Value.The2High.ToString();
                     }
+
                     entryList.Add(newEntry);
-                    i++;
                 }
             }
             return entryList;
