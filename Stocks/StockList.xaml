@@ -53,6 +53,9 @@
                 x:Name            = "HighestLabel"
                 HorizontalOptions = "CenterAndExpand"
                 TextColor         = "Green" />
+            <ActivityIndicator
+                    x:Name    = "LoadingIcon"
+                    IsRunning = "false" />
             <Label
                 x:Name            = "LowestLabel"
                 HorizontalOptions = "CenterAndExpand"

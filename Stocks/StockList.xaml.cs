@@ -34,7 +34,7 @@ namespace Stocks {
         }
 
         async Task PullData() {
-            StocksListView.IsRefreshing = true;
+            LoadingIcon.IsRunning = true;
 
             string newSymbol = StockSearch.Text;
 
@@ -51,7 +51,7 @@ namespace Stocks {
                 oldSymbol = newSymbol;
             }
 
-            StocksListView.IsRefreshing = false;
+            LoadingIcon.IsRunning = false;
 
         }
     }

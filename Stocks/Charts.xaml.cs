@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microcharts;
-using SkiaSharp;
 using Stocks.Models;
 using Xamarin.Forms;
-using Entry = Microcharts.Entry;
 
 namespace Stocks {
-
     public partial class Charts : ContentPage {
 
         Dictionary<string, TimeSeriesDaily> stockData;
@@ -17,6 +14,7 @@ namespace Stocks {
 
         public Charts() {
             InitializeComponent();
+            StockSearch.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeCharacter);
         }
 
         async void Handle_Appearing(object sender, System.EventArgs e) {
