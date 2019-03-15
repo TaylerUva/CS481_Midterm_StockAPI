@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microcharts;
 using Stocks.Models;
 using Xamarin.Forms;
+using SkiaSharp;
 
 namespace Stocks {
     public partial class Charts : ContentPage {
@@ -48,8 +49,14 @@ namespace Stocks {
             } else {
                 Label30Days.IsVisible = true;
                 Label100Days.IsVisible = true;
+
+
                 Chart30Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(30) };
                 Chart100Days.Chart = new LineChart() { Entries = StockDataModel.GetPastDayRange(100) };
+
+                Chart30Days.Chart.BackgroundColor = SKColors.Transparent;
+                Chart100Days.Chart.BackgroundColor = SKColors.Transparent;
+
                 HighestLabel.Text = StockDataModel.GetHighest();
                 LowestLabel.Text = StockDataModel.GetLowest();
                 oldSymbol = newSymbol;

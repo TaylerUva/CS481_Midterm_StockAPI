@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microcharts;
+using SkiaSharp;
 
 namespace Stocks.Models {
     public static class StockDataModel {
@@ -90,8 +91,10 @@ namespace Stocks.Models {
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
                     var newEntry = new Entry((float)item.Value.The2High) {
-                        Label = item.Key,
-                        ValueLabel = item.Value.The2High.ToString()
+                        //Label = item.Key,
+                        TextColor = SKColors.White,
+                        Color = SKColors.White,
+                        //ValueLabel = item.Value.The2High.ToString()
                     };
                     entryList.Add(newEntry);
                 }
