@@ -46,11 +46,11 @@
                 <ActivityIndicator
                     x:Name    = "LoadingIcon"
                     IsRunning = "false" />
-                <Label Text="Last 30 Days"/>
+                <Label Text="Last 30 Days" HorizontalTextAlignment="Center"/>
                 <microcharts:ChartView
                     x:Name        = "Chart30Days"
                     HeightRequest = "300" />
-                <Label Text="Last 100 Days"/>
+                <Label Text="Last 100 Days" HorizontalTextAlignment="Center"/>
                 <microcharts:ChartView
                     x:Name        = "Chart100Days"
                     HeightRequest = "300" />

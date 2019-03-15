@@ -90,6 +90,7 @@ namespace Stocks.Models {
             if (dailyData != null) {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
                     var newEntry = new Entry((float)item.Value.The2High) {
+                        Label = item.Key,
                         ValueLabel = item.Value.The2High.ToString()
                     };
                     entryList.Add(newEntry);
