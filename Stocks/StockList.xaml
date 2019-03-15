@@ -77,6 +77,7 @@
             BackgroundColor = "Transparent"
             SeparatorColor  = "White"
             Margin          = "10,0,10,0"
+            IsVisible       = "false"
             HasUnevenRows   = "true">
             <ListView.ItemTemplate>
                 <DataTemplate>

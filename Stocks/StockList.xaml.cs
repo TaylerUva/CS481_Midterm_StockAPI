@@ -45,6 +45,7 @@ namespace Stocks {
                 StockDataModel.lastSymbol = oldSymbol;
                 await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
             } else {
+                StocksListView.IsVisible = true;
                 StocksListView.ItemsSource = stockData;
                 HighestLabel.Text = StockDataModel.GetHighest();
                 LowestLabel.Text = StockDataModel.GetLowest();

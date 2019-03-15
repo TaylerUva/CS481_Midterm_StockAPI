@@ -6,6 +6,7 @@
     ios:Page.UseSafeArea = "true"
     xmlns:x              = "http://schemas.microsoft.com/winfx/2009/xaml"
     Appearing            = "Handle_Appearing"
+    BackgroundColor      = "Black"
     x:Class              = "Stocks.Charts">
     <ContentPage.Content>
         <Grid>
@@ -31,26 +32,47 @@
                 Placeholder       = "Stock Symbol"
                 VerticalOptions   = "FillAndExpand"
                 HorizontalOptions = "FillAndExpand"
-                Completed         = "RequestStockData"/>
+                BackgroundColor   = "Gray"
+                TextColor         = "White"
+                Completed         = "RequestStockData" />
             <Button
-                Grid.Row    = "0"
-                Grid.Column = "1"
-                Margin      = "0,0,20,0"
-                x:Name      = "SearchButton"
-                Text        = "Get Stock"
-                Clicked     = "RequestStockData" />
+                Grid.Row        = "0"
+                Grid.Column     = "1"
+                Margin          = "0,0,20,0"
+                x:Name          = "SearchButton"
+                Text            = "Get Stock"
+                BackgroundColor = "Teal"
+                TextColor       = "White"
+                Padding         = "5"
+                Clicked         = "RequestStockData" />
             <StackLayout
                 Grid.Row        = "1"
                 Grid.Column     = "0"
                 Grid.ColumnSpan = "2">
                 <ActivityIndicator
                     x:Name    = "LoadingIcon"
+                    Color     = "White"
+                    Scale     = "1.5"
                     IsRunning = "false" />
-                <Label Text="Last 30 Days" HorizontalTextAlignment="Center"/>
+                <Label
+                    x:Name                  = "Label30Days"
+                    IsVisible               = "false"
+                    Text                    = "Last 30 Days"
+                    HorizontalTextAlignment = "Center"
+                    TextColor               = "White"
+                    FontSize                = "Large"
+                    FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart30Days"
                     HeightRequest = "300" />
-                <Label Text="Last 100 Days" HorizontalTextAlignment="Center"/>
+                <Label
+                    x:Name                  = "Label100Days"
+                    IsVisible               = "false"
+                    Text                    = "Last 100 Days"
+                    HorizontalTextAlignment = "Center"
+                    TextColor               = "White"
+                    FontSize                = "Large"
+                    FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart100Days"
                     HeightRequest = "300" />
