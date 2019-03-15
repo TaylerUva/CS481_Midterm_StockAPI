@@ -10,10 +10,9 @@ namespace Stocks.Models {
         const string API_KEY = "&apikey=7W0XKA610P4NM7MQ";
         const string END_POINT = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=";
 
-        static string m_symbol;
+        public static string m_symbol;
 
         static Dictionary<string, TimeSeriesDaily> dailyData;
-
 
         /// <summary>
         /// Gets the symbol data.
@@ -41,12 +40,6 @@ namespace Stocks.Models {
             }
             return dailyData;
         }
-
-        /// <summary>
-        /// Gets the symbol.
-        /// </summary>
-        /// <returns>The symbol.</returns>
-        public static string GetSymbol() { return m_symbol; }
 
         /// <summary>
         /// Gets the highest stock prices.

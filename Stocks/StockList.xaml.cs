@@ -18,7 +18,7 @@ namespace Stocks {
         }
 
         async void Handle_Appearing(object sender, System.EventArgs e) {
-            StockSearch.Text = StockDataModel.GetSymbol();
+            StockSearch.Text = StockDataModel.m_symbol;
             if (StockSearch.Text != oldSymbol) {
                 System.Diagnostics.Debug.WriteLine("CHANGED!"); //*************
                 await PullData();
@@ -43,6 +43,7 @@ namespace Stocks {
 
             if (stockData == null) {
                 StockSearch.Text = oldSymbol;
+                StockDataModel.m_symbol = oldSymbol;
                 await DisplayAlert("Stock Not Found", "No stock matching symbol:\n\"" + newSymbol + "\"", "Close");
             } else {
                 StocksListView.ItemsSource = stockData;
