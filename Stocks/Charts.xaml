@@ -66,12 +66,13 @@
                     TextColor         = "Red" />
             </StackLayout>
             <StackLayout
+                x:Name          = "ChartsAndLabels"
+                IsVisible       = "false"
                 Grid.Row        = "2"
                 Grid.Column     = "0"
                 Grid.ColumnSpan = "2">
                 <Label
                     x:Name                  = "Label30Days"
-                    IsVisible               = "false"
                     Text                    = "Last 30 Days"
                     HorizontalTextAlignment = "Center"
                     TextColor               = "White"
@@ -79,12 +80,27 @@
                     FontAttributes          = "Bold" />
                 <microcharts:ChartView
                     x:Name        = "Chart30Days"
-                    IsVisible     = "false"
-                    Margin        = "10"
+                    Margin        = "10,0"
+                    VerticalOptions="FillAndExpand"
                     HeightRequest = "300" />
+                <StackLayout
+                    Orientation = "Horizontal"
+                    Margin      = "30,0">
+                    <Label
+                        Text              = "Past"
+                        TextColor         = "White"
+                        FontAttributes    = "Bold"
+                        VerticalOptions   = "StartAndExpand"
+                        HorizontalOptions = "StartAndExpand" />
+                    <Label
+                        Text              = "Today"
+                        TextColor         = "White"
+                        FontAttributes    = "Bold"
+                        HorizontalOptions = "EndAndExpand"
+                        VerticalOptions   = "EndAndExpand" />
+                </StackLayout>
                 <Label
                     x:Name                  = "Label100Days"
-                    IsVisible               = "false"
                     Text                    = "Last 100 Days"
                     HorizontalTextAlignment = "Center"
                     TextColor               = "White"
@@ -93,7 +109,6 @@
                 <microcharts:ChartView
                     x:Name        = "Chart100Days"
                     Margin        = "10,0"
-                    IsVisible     = "false"
                     HeightRequest = "300" />
             </StackLayout>
         </Grid>

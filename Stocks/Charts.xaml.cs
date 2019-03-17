@@ -63,10 +63,7 @@ namespace Stocks {
                 HighestLabel.Text = StockDataModel.GetHighestString();
                 LowestLabel.Text = StockDataModel.GetLowestString();
 
-                Label30Days.IsVisible = true;
-                Label100Days.IsVisible = true;
-                Chart30Days.IsVisible = true;
-                Chart100Days.IsVisible = true;
+                ChartsAndLabels.IsVisible = true;
 
                 oldSymbol = newSymbol;
             }

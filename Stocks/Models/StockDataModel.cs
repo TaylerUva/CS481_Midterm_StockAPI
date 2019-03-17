@@ -102,6 +102,7 @@ namespace Stocks.Models {
         /// <param name="range">Range.</param>
         public static List<Entry> GetPastDayRange(int range) {
             var subList = GetAsEntries();
+            subList.Reverse();
             if (subList.Count > range) return subList.GetRange(0, range);
             return subList;
         }
@@ -119,7 +120,6 @@ namespace Stocks.Models {
                     // Adds label to every 5th item
                     if (i++ % 5 == 0) {
                         newEntry.ValueLabel = "$" + item.Value.The2High.ToString();
-                        newEntry.Label = i.ToString();
                     }
 
                     entryList.Add(newEntry);
