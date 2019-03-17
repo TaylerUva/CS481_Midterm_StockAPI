@@ -32,7 +32,8 @@
                 Placeholder       = "Stock Symbol"
                 VerticalOptions   = "FillAndExpand"
                 HorizontalOptions = "FillAndExpand"
-                BackgroundColor   = "Gray"
+                BackgroundColor   = "#121212"
+                PlaceholderColor  = "Gray"
                 TextColor         = "White"
                 Completed         = "RequestStockData" />
             <Button

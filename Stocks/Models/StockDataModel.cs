@@ -113,12 +113,13 @@ namespace Stocks.Models {
                 foreach (KeyValuePair<string, TimeSeriesDaily> item in dailyData) {
                     var newEntry = new Entry((float)item.Value.The2High) {
                         TextColor = SKColors.White,
-                        Color = SKColors.White
+                        Color = SKColors.White,
                     };
 
                     // Adds label to every 5th item
                     if (i++ % 5 == 0) {
                         newEntry.ValueLabel = "$" + item.Value.The2High.ToString();
+                        newEntry.Label = i.ToString();
                     }
 
                     entryList.Add(newEntry);
